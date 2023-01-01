@@ -1,5 +1,3 @@
-
-
 .course-card {
   margin: 20px 10px;
   max-width:474px;
@@ -19,13 +17,12 @@
   max-height: 267px;
 }
 
-
 .long-description {
   min-height: 50px;
   max-width: 442px;
 }
 
 mat-card-content p {
-  padding: 10px;
+  padding-top: 10px;
 }
 

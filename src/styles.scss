@@ -3,3 +3,9 @@
 
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+.courses-panel{
+    .mat-mdc-tab-body-content {
+        overflow: hidden!important;
+    }    
+}
+
