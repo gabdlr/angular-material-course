@@ -1,6 +1,72 @@
-<div [formGroup]="form" class="course-details-form">
+<div [formGroup]="form" class="course-details-form" >
+    <mat-form-field>
+        <mat-label
+        >Course titlecase</mat-label>
+        <input 
+            matInput 
+            formControlName="title"
+        >
+        <mat-error>
+            <span *ngIf="courseTitle.errors?.minlength">
+            A minimum lenght of 5 characters is required</span>
+        </mat-error>
+    </mat-form-field>
+    <mat-radio-group 
+        class="course-type" 
+        formControlName="courseType"
+    >
+        <mat-radio-button
+            value="free"
+        >{{ 'free' | titlecase}}</mat-radio-button>
+        <mat-radio-button
+            value="premium"
+        >{{ 'premium' | titlecase}}</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+        <mat-select
+            formControlName="category"
+            placeholder="Select category"
+        >
+        <mat-option
+            value="BEGGINERS"
+        >Begginers</mat-option>
+        <mat-option
+            value="INTERMEDIATE"
+        >Intermediate</mat-option>
+        <mat-option
+            value="ADVANCED"
+        >Advanced</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        appearance="outline"
+    >
+        <mat-label>
+            Release date
+        </mat-label>
+        <input matInput 
+            formControlName="releasedAt"
+            [matDatepicker]="releasedAtPicker"    
+        >
+        <mat-datepicker-toggle
+            matSuffix
+            [for]="releasedAtPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #releasedAtPicker>
 
-
+        </mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox
+        color="primary"
+        formControlName="downloadsAllowed"
+    >Downloads allowed?</mat-checkbox>
+    <mat-form-field>
+        <textarea
+            formControlName="longDescription" 
+            matInput
+            placeholder="Add a description"
+        ></textarea>
+    </mat-form-field>
 </div>
 
 

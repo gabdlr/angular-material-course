@@ -1,8 +1,36 @@
+
 <div class="create-course-panel data-form">
-
   <h2 class="title">Create New Course</h2>
-
-
+  <mat-horizontal-stepper 
+    class="mat-elevation-z5"
+    labelPosition="bottom"
+  >
+    <mat-step errorMessage="course details in error">
+      <ng-template matStepLabel>{{'course detail'|titlecase}}</ng-template>
+      <create-course-step-1></create-course-step-1>
+      <div class="stepper-buttons">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          matStepperNext
+        >{{'add course lessons'|titlecase}}</button>
+      </div>
+    </mat-step>
+    <mat-step errorMessage="course lessons in error">
+      <ng-template matStepLabel>{{'course lessons'|titlecase}}</ng-template>
+      <create-course-step-2></create-course-step-2>
+      <div class="stepper-buttons">
+        <button 
+          mat-raised-button
+          matStepperPrevious
+        >{{'back'|titlecase}}</button>
+        <button 
+        mat-raised-button 
+        color="accent" 
+      >{{'create course'|titlecase}}</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
 
 
