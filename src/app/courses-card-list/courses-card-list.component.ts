@@ -3,7 +3,7 @@ import {Course} from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { openEditCourseDialog } from '../course-dialog/course-dialog.component';
 import { filter } from 'rxjs/operators';
-
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 @Component({
     selector: 'courses-card-list',
     templateUrl: './courses-card-list.component.html',
@@ -13,12 +13,35 @@ export class CoursesCardListComponent implements OnInit {
 
     @Input()
     courses: Course[];
+    cols: number = 3;
+    handsetPortrait: boolean = false;
 
-    constructor(private matDialog: MatDialog) {
+    constructor(private matDialog: MatDialog,
+                private breakpointObserver: BreakpointObserver) {
     }
 
     ngOnInit() {
-
+        this.breakpointObserver.observe([
+            Breakpoints.TabletPortrait,
+            Breakpoints.TabletLandscape,
+            Breakpoints.HandsetPortrait,
+            Breakpoints.HandsetLandscape]
+        ).subscribe({
+            next: (result) => {
+                const breakpoints = result.breakpoints;
+                this.handsetPortrait = false;
+                if(breakpoints[Breakpoints.TabletPortrait]){
+                    this.cols = 2;
+                }else if(breakpoints[Breakpoints.TabletLandscape]){
+                    this.cols = 3;
+                }else if(breakpoints[Breakpoints.HandsetPortrait]){
+                    this.cols = 1;
+                    this.handsetPortrait = true;
+                }else if(breakpoints[Breakpoints.HandsetLandscape]){
+                    this.cols = 2;
+                }
+            }
+        })
     }
 
     editCourse(course:Course) {
